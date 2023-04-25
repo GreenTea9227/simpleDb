@@ -23,7 +23,7 @@ class SimpleDbTest {
 
     @BeforeAll
     public void beforeAll() {
-        simpleDb = new SimpleDb("localhost", "yohan", "1111", "simpleDb__test");
+        simpleDb = new SimpleDb("localhost", "root", "1111", "simpleDb__test");
         simpleDb.setDevMode(true);
 
         createArticleTable();
