@@ -8,12 +8,14 @@ public class DbConnectionUtil {
         Connection con;
 
         try {
+
             con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return con;
     }
+
 
     public static void closeAll(Connection con, PreparedStatement pstmt, ResultSet rs) {
 
@@ -52,6 +54,7 @@ public class DbConnectionUtil {
                 throw new RuntimeException(e);
             }
         }
+
     }
 
 

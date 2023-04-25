@@ -1,22 +1,21 @@
 package mysqlconnect;
 
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Constructor;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import java.util.stream.Collectors;
 
 
 public class Sql {
 
 
+
     private StringBuilder sqlQuery;
+
+
     private Connection con;
     private PreparedStatement pstmt;
     private ResultSet rs;
@@ -31,6 +30,7 @@ public class Sql {
     protected Sql(Connection con, boolean devmode) {
         this.con = con;
         sqlQuery = new StringBuilder();
+
         this.devmode = devmode;
 
     }
@@ -258,12 +258,14 @@ public class Sql {
         return result;
     }
 
+
     private void executeQuery() throws SQLException {
         pstmt = con.prepareStatement(sqlQuery.toString());
         setParameter(pstmt);
         rs = pstmt.executeQuery();
         logging();
     }
+
 
     private Integer executeUpdate() throws SQLException {
         pstmt = con.prepareStatement(sqlQuery.toString(), Statement.RETURN_GENERATED_KEYS);
@@ -273,18 +275,22 @@ public class Sql {
         return num;
     }
 
+
     private void setParameter(PreparedStatement pstmt) throws SQLException {
         for (int i = 1; i <= list.size(); i++) {
             pstmt.setObject(i, list.get(i - 1));
         }
     }
 
+
     private void logging() {
         if (devmode)
             System.out.println(pstmt.toString());
     }
 
+
     private void close() {
         MyDatasource.closeConnection(con, pstmt, rs);
     }
+
 }

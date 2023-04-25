@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SimpleDb {
+
     private boolean devMode;
     private MyDatasource myDatasource;
+
 
 
     public SimpleDb(String url, String username, String password, String schema) {
@@ -18,6 +20,7 @@ public class SimpleDb {
 
     public void run(String sqlString) {
         Connection con = myDatasource.getConnection();
+
         PreparedStatement pstmt;
 
         try {
@@ -27,12 +30,16 @@ public class SimpleDb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         MyDatasource.closeConnection(con, pstmt, null);
+
 
     }
 
     public void run(String sqlString, Object... objects) {
+
         Connection con = myDatasource.getConnection();
+
         PreparedStatement pstmt = null;
 
         try {
@@ -46,7 +53,9 @@ public class SimpleDb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
+
             MyDatasource.closeConnection(con, pstmt, null);
+
         }
 
 
@@ -57,11 +66,13 @@ public class SimpleDb {
     }
 
     public Sql genSql() {
+
         return new Sql(myDatasource.getConnection(), devMode);
     }
 
     public void clear() {
         myDatasource.clear();
+
     }
 
 

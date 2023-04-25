@@ -1,9 +1,11 @@
 package mysqlconnect;
 
 
+
 import entity.Article;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
+
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -23,13 +25,16 @@ class SimpleDbTest {
 
     @BeforeAll
     public void beforeAll() {
+
         simpleDb = new SimpleDb("localhost", "root","1111" , "simpleDb__test");
         simpleDb.setDevMode(true);
+
         createArticleTable();
     }
 
     @BeforeEach
     public void beforeEach() {
+
         simpleDb.clear();
         simpleDb = new SimpleDb("localhost", "root", "1111", "simpleDb__test");
         simpleDb.setDevMode(true);
@@ -37,9 +42,8 @@ class SimpleDbTest {
         makeArticleTestData();
 
 
-
-
     }
+
 
 
     private void makeArticleTestData() {
@@ -323,6 +327,7 @@ class SimpleDbTest {
         assertThat(foundIds).isEqualTo(ids);
     }
 
+
     @Test
     public void failToExceedThreadSize() {
         Assertions.assertThatThrownBy(() -> {
@@ -332,5 +337,6 @@ class SimpleDbTest {
         }).isInstanceOf(NoConnection.class);
 
     }
+
 }
 
