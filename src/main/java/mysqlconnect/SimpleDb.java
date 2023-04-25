@@ -7,9 +7,7 @@ import java.sql.SQLException;
 public class SimpleDb {
 
     private boolean devMode;
-    private MyDatasource myDatasource;
-
-
+    private final MyDatasource myDatasource;
 
     public SimpleDb(String url, String username, String password, String schema) {
 
@@ -32,7 +30,6 @@ public class SimpleDb {
         }
 
         MyDatasource.closeConnection(con, pstmt, null);
-
 
     }
 
@@ -58,7 +55,19 @@ public class SimpleDb {
 
         }
 
+    }
 
+    public void startTransaction(Connection con) throws SQLException {
+        con.setAutoCommit(false);
+    }
+
+    public void rollback(Connection con) throws SQLException {
+        con.rollback();
+    }
+
+    public void commit(Connection con) throws SQLException {
+        con.commit();
+        con.setAutoCommit(true);
     }
 
     public void setDevMode(boolean mode) {
@@ -70,10 +79,10 @@ public class SimpleDb {
         return new Sql(myDatasource.getConnection(), devMode);
     }
 
+    //단순 테스트 커넥션 초기화 용도
     public void clear() {
         myDatasource.clear();
 
     }
-
 
 }

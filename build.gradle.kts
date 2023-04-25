@@ -16,11 +16,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j:8.0.33")
     compileOnly("org.projectlombok:lombok:1.18.26")
 
-<<<<<<< HEAD
     annotationProcessor("org.projectlombok:lombok")
-=======
-    annotationProcessor("org.projectlombok:lombok:1.18.26")
->>>>>>> c08e4c053b2ae859eb645e5e941121e7936d623e
 
     testImplementation("org.assertj:assertj-core:3.11.1")
 

@@ -1,6 +1,7 @@
 package mysqlconnect;
 
 public class NoConnection extends RuntimeException {
+
     public NoConnection() {
         super();
     }

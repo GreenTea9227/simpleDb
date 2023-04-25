@@ -16,7 +16,6 @@ public class DbConnectionUtil {
         return con;
     }
 
-
     public static void closeAll(Connection con, PreparedStatement pstmt, ResultSet rs) {
 
         closeResultSet(rs);
@@ -24,7 +23,6 @@ public class DbConnectionUtil {
         closeConnection(con);
 
     }
-
 
     public static void closeConnection(Connection con) {
         if (con != null) {
@@ -56,6 +54,5 @@ public class DbConnectionUtil {
         }
 
     }
-
 
 }

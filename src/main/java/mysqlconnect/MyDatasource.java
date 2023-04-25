@@ -11,10 +11,10 @@ public class MyDatasource {
     private static final int MAX_SIZE = 5;
     private static Map<Connection, Boolean> map;
     private static int connectionPool = MAX_SIZE;
-    private static int time = 10;
-    private String url;
-    private String password;
-    private String username;
+    private static final int time = 10;
+    private final String url;
+    private final String password;
+    private final String username;
 
     private MyDatasource(String url, String username, String password) {
         this.url = url;
@@ -61,6 +61,5 @@ public class MyDatasource {
         }
 
     }
-
 
 }

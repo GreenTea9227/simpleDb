@@ -1,11 +1,11 @@
 package mysqlconnect;
 
-
-
 import entity.Article;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -17,7 +17,6 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-
 @TestInstance(PER_CLASS)
 class SimpleDbTest {
 
@@ -26,7 +25,7 @@ class SimpleDbTest {
     @BeforeAll
     public void beforeAll() {
 
-        simpleDb = new SimpleDb("localhost", "root","1111" , "simpleDb__test");
+        simpleDb = new SimpleDb("localhost", "root", "1111", "simpleDb__test");
         simpleDb.setDevMode(true);
 
         createArticleTable();
@@ -41,10 +40,7 @@ class SimpleDbTest {
         truncateArticleTable();
         makeArticleTestData();
 
-
     }
-
-
 
     private void makeArticleTestData() {
         IntStream.rangeClosed(1, 6).forEach(no -> {
@@ -222,7 +218,6 @@ class SimpleDbTest {
         assertThat(articleMap.get("isBlind")).isEqualTo(false);
     }
 
-
     @Test
     public void selectArticle() {
         Sql sql = simpleDb.genSql();
@@ -326,7 +321,6 @@ class SimpleDbTest {
 
         assertThat(foundIds).isEqualTo(ids);
     }
-
 
     @Test
     public void failToExceedThreadSize() {
