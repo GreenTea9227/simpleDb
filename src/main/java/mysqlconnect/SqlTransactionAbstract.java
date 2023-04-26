@@ -2,11 +2,11 @@ package mysqlconnect;
 
 import java.sql.SQLException;
 
-public abstract class SqlTransaction<T> {
+public abstract class SqlTransactionAbstract<T> {
 
     private final Sql sql;
 
-    public SqlTransaction(Sql sql) {
+    public SqlTransactionAbstract(Sql sql) {
         this.sql = sql;
     }
 

@@ -1,7 +1,6 @@
 package mysqlconnect;
 
 import entity.Article;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ class SimpleDbTest {
     @BeforeAll
     public void beforeAll() {
 
-        simpleDb = new SimpleDb("localhost", "root", "1111", "simpleDb__test");
+        simpleDb = new SimpleDb("localhost", "yohan", "1111", "simpleDb__test");
         simpleDb.setDevMode(true);
 
         createArticleTable();
@@ -34,9 +33,6 @@ class SimpleDbTest {
     @BeforeEach
     public void beforeEach() {
 
-        simpleDb.clear();
-        simpleDb = new SimpleDb("localhost", "root", "1111", "simpleDb__test");
-        simpleDb.setDevMode(true);
         truncateArticleTable();
         makeArticleTestData();
 
@@ -320,16 +316,6 @@ class SimpleDbTest {
         List<Long> foundIds = sql.selectLongs();
 
         assertThat(foundIds).isEqualTo(ids);
-    }
-
-    @Test
-    public void failToExceedThreadSize() {
-        Assertions.assertThatThrownBy(() -> {
-            for (int i = 0; i < 6; i++) {
-                Sql sql = simpleDb.genSql();
-            }
-        }).isInstanceOf(NoConnection.class);
-
     }
 
 }

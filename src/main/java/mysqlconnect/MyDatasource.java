@@ -9,9 +9,9 @@ import java.util.Map;
 public class MyDatasource {
 
     private static final int MAX_SIZE = 5;
+    private static final int time = 10;
     private static Map<Connection, Boolean> map;
     private static int connectionPool = MAX_SIZE;
-    private static final int time = 10;
     private final String url;
     private final String password;
     private final String username;

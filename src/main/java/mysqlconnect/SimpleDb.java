@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class SimpleDb {
 
-    private boolean devMode;
     private final MyDatasource myDatasource;
+    private boolean devMode;
 
     public SimpleDb(String url, String username, String password, String schema) {
 
@@ -75,8 +75,7 @@ public class SimpleDb {
     }
 
     public Sql genSql() {
-
-        return new Sql(myDatasource.getConnection(), devMode);
+        return new SqlByInterface(myDatasource.getConnection(), devMode);
     }
 
     //단순 테스트 커넥션 초기화 용도
